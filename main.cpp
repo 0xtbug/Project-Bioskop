@@ -342,7 +342,7 @@ void tampilkanBooking(const User* users, int userCount, const Film* films, int f
         for (int j = 0; j < currentUser.bookingCount; j++) {
             const string& bookingID = currentUser.bookings[j];
             cout << "- " << bookingID << endl;
-            // Find the film associated with the booking ID
+            // Temukan film yang terkait dengan ID pemesanan
             int filmIndex = stoi(bookingID.substr(1, bookingID.find('-') - 1));
             const Film& bookedFilm = films[filmIndex];
             cout << "Judul Film: " << bookedFilm.judul << endl;
