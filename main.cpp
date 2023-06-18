@@ -293,7 +293,7 @@ void tampilkanFilmSedangTayang(Film* films, int filmCount, User* users, int user
         }
         seat = 'X';  // Memperbarui status kursi menjadi 'X' (dipesan)
         seatAvailable = false;  // Tandai kursi sebagai tidak tersedia
-        // Menghasilkan ID pemesanan unik (Anda dapat mengubah logika sesuai kebutuhan Anda)
+        // Menghasilkan ID pemesanan unik
         string bookingID = "B" + to_string(filmChoice) + "-" + row + to_string(column);
         // Membuat catatan pemesanan baru
         Booking newBooking;
