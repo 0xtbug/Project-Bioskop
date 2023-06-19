@@ -3,7 +3,7 @@
 Struktur data
 | Struktur data | Status |
 | ------ | ------ |
-| Pointer | ❌ |
+| Pointer | ✅ |
 | Array | ✅ |
 | Struct | ✅ |
 | Linked List |❌ |
