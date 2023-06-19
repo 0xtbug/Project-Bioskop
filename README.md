@@ -1,6 +1,5 @@
 # Project-Bioskop
 
-Struktur data
 | Struktur data | Status |
 | ------ | ------ |
 | Pointer | ✅ |
