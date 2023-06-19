@@ -236,7 +236,8 @@ void updateHarga(Film* films, int filmCount) {
     
     cout << "Harga untuk semua film berhasil diperbarui." << endl;
 }
-void tampilkanFilmSedangTayang(Film* films, int filmCount, User* users, int userCount, int currentUserIndex) {
+
+void tampilkanFilmSedangTayang(Film* films, int filmCount) {
     bool adaFilmTayang = false;
     cout << "============================ Film Yang Sedang Tayang ============================" << endl;
     cout << setw(6) << "No" << setw(15) << "Judul" << setw(10) << "Genre" << endl; // Baris header
@@ -246,9 +247,18 @@ void tampilkanFilmSedangTayang(Film* films, int filmCount, User* users, int user
             cout << setw(6) << i + 1; // Nomor film
             cout << setw(15) << films[i].judul; // Judul
             cout << setw(10) << films[i].genre; // Genre
+            cout << endl;
         }
     }
     
+    if (!adaFilmTayang) {
+        cout << "Tidak ada film yang sedang tayang." << endl;
+    }
+}
+
+void beliTiket(Film* films, int filmCount, User* users, int userCount, int currentUserIndex) {
+    tampilkanFilmSedangTayang(films, filmCount);
+
     int filmChoice;
     cout << "\nPilih film untuk melihat detail: ";
     cin >> filmChoice;
@@ -324,9 +334,6 @@ void tampilkanFilmSedangTayang(Film* films, int filmCount, User* users, int user
     }
     cout << "Pemesanan kursi berhasil!" << endl;
     cout << "Total harga: " << totalPrice << endl;
-    if (!adaFilmTayang) {
-        cout << "Tidak ada film yang sedang tayang saat ini." << endl;
-    }
 }
 void tampilkanBooking(const User* users, int userCount, const Film* films, int filmCount, int currentUserIndex) {
     if (userCount == 0) {
@@ -427,12 +434,14 @@ void tampilkanWaktuSekarang() {
 }
 void adminMenu() {
     cout << "===== Admin Menu =====" << endl;
-    cout << "1. Tambah film" << endl;
-    cout << "2. Hapus Film" << endl;
-    cout << "3. Update Film" << endl;
-    cout << "4. Update Harga Film" << endl;
-    cout << "5. Tambah film coming soon" << endl;
-    cout << "6. Keluar" << endl;
+    cout << "1. List Daftar film sedang tayang" << endl;
+    cout << "2. List Daftar film coming soon" << endl;
+    cout << "3. Tambah film" << endl;
+    cout << "4. Hapus Film" << endl;
+    cout << "5. Update Film" << endl;
+    cout << "6. Update Harga Film" << endl;
+    cout << "7. Tambah film coming soon" << endl;
+    cout << "8. Keluar" << endl;
     cout << "Pilihan anda: ";
 }
 void adminMode(Film* films, int& filmCount) {
@@ -443,21 +452,27 @@ void adminMode(Film* films, int& filmCount) {
         cin >> adminChoice;
         switch (adminChoice) {
             case 1:
-                tambahFilm(films, filmCount);
+                tampilkanFilmSedangTayang(films, filmCount);
                 break;
-                case 2:
-                hapusFilm(films, filmCount);
+            case 2:
+                tampilkanFilmComingSoon(films, filmCount);
                 break;
             case 3:
-                updateFilm(films, filmCount);
+                tambahFilm(films, filmCount);
                 break;
             case 4:
-                updateHarga(films, filmCount);
+                hapusFilm(films, filmCount);
                 break;
             case 5:
-                tambahFilmComingSoon(films, filmCount);
+                updateFilm(films, filmCount);
                 break;
             case 6:
+                updateHarga(films, filmCount);
+                break;
+            case 7:
+                tambahFilmComingSoon(films, filmCount);
+                break;
+            case 8:
                 exitAdminMenu = true;
                 cout << "Keluar dari menu admin" << endl;
                 break;
@@ -470,8 +485,8 @@ void adminMode(Film* films, int& filmCount) {
 }
 void userMenu() {
     cout << "===== User Menu =====" << endl;
-    cout << "1. Tampilkan film sedang tayang" << endl;
-    cout << "2. Tampilkan film coming soon" << endl;
+    cout << "1. List Daftar film sedang tayang" << endl;
+    cout << "2. List Daftar film coming soon" << endl;
     cout << "3. Cek saldo" << endl;
     cout << "4. Isi saldo" << endl;
     cout << "5. Lihat kode tiket" << endl;
@@ -488,7 +503,7 @@ void userMode(User* users, int userCount, Film* films, int filmCount, int curren
         switch (userChoice) {
             case 1:
                 // Display now showing films
-                tampilkanFilmSedangTayang(films, filmCount, users, userCount, currentUserIndex);
+                beliTiket(films, filmCount, users, userCount, currentUserIndex);
                 break;
             case 2:
                 // Display coming soon films
@@ -518,8 +533,8 @@ void userMode(User* users, int userCount, Film* films, int filmCount, int curren
 }
 int main() {
     User* users = new User[MAX_USERS];
-    int userCount = 0;
     Film* films = new Film[MAX_FILMS];
+    int userCount = 0;
     int filmCount = 0;
     int choice;
     bool isAdmin = false;
@@ -532,7 +547,7 @@ int main() {
     users[userCount] = *adminUser;
     userCount++;
     do {
-        cout << "===== Xyz =====" << endl;
+        cout << "===== Aplikasi Bioskop =====" << endl;
         cout << "1. Login" << endl;
         cout << "2. Register" << endl;
         cout << "3. Keluar" << endl;
