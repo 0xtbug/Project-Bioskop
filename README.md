@@ -23,7 +23,7 @@
 # Fitur user
 | Nama | Status |
 | ------ | ------ |
-| Lihat film sedang tayang | ✅ |
+| Lihat film sedang tayang, beli tiket | ✅ |
 | Lihat film coming soon | ✅ |
 | Cek saldo | ✅ |
 | Isi saldo | ✅ |
