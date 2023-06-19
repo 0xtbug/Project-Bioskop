@@ -293,7 +293,7 @@ void tampilkanFilmSedangTayang(Film* films, int filmCount, User* users, int user
         }
         seat = 'X';  // Memperbarui status kursi menjadi 'X' (dipesan)
         seatAvailable = false;  // Tandai kursi sebagai tidak tersedia
-        // Menghasilkan ID pemesanan unik
+        // Menghasilkan ID pemesanan unik (Anda dapat mengubah logika sesuai kebutuhan Anda)
         string bookingID = "B" + to_string(filmChoice) + "-" + row + to_string(column);
         // Membuat catatan pemesanan baru
         Booking newBooking;
@@ -342,7 +342,7 @@ void tampilkanBooking(const User* users, int userCount, const Film* films, int f
         for (int j = 0; j < currentUser.bookingCount; j++) {
             const string& bookingID = currentUser.bookings[j];
             cout << "- " << bookingID << endl;
-            // Temukan film yang terkait dengan ID pemesanan
+            // Find the film associated with the booking ID
             int filmIndex = stoi(bookingID.substr(1, bookingID.find('-') - 1));
             const Film& bookedFilm = films[filmIndex];
             cout << "Judul Film: " << bookedFilm.judul << endl;
